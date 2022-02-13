@@ -1,0 +1,57 @@
+#banner {
+    color: rgb(255, 255, 255);
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    background-color: black;
+    height: 100%;
+    width: 100%;
+  }
+  
+  #banner img {
+    background: url(../dist/images/36140-429433.png) no-repeat fixed 100% 100%;
+    background-size: cover;
+    opacity: 0.8;
+    height: inherit;
+    width: inherit;
+  }
+  
+  .director-message {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: row;
+    margin: 10em;
+  }
+  
+  #bannertext {
+    width: 24em;
+    position: fixed;
+    border: 0.5em solid #fff;
+    margin-left: 5em;
+    padding: 0 2em;
+    font-size: larger;
+  }
+  
+  .director-message__img {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 50%;
+  }
+  
+  .director-message__content {
+    width: 30%;
+  }
+  
+  @-webkit-keyframes bake-pie {
+    from {
+      transform: rotate(0deg) translate3d(0, 0, 0);
+    }
+  }
+  
+  @keyframes bake-pie {
+    from {
+      transform: rotate(0deg) translate3d(0, 0, 0);
+    }
+  }

@@ -1,0 +1,39 @@
+//---------------------------------------------
+//
+//  Table of Contents
+//
+//    1. Basics
+//    2. Page Layout
+//    3. Components
+//
+//---------------------------------------------
+
+//---------------------------------------------
+// 1. Basics
+//---------------------------------------------
+
+@import "variables";
+@import "bootstrap";
+@import "fonts";
+
+//---------------------------------------------
+// 2. Page Layout
+//---------------------------------------------
+
+body {
+  margin: 0%;
+  padding: 0%;
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  background-color: #f9f7f7;
+}
+
+//---------------------------------------------
+// 3.Components
+//---------------------------------------------
+
+@import "components/slider";
+@import "components/banner";
+@import "components/navbar";
+@import "components/awards";

@@ -1,0 +1,40 @@
+#hero {
+  background-image: url(/dist/images/36140-429433.png);
+  background-repeat: no-repeat;
+  background-position: bottom;
+  background-size: cover;
+  background-attachment: fixed;
+  height: inherit;
+  width: inherit;
+}
+
+#banner {
+  color: rgb(255, 255, 255);
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  background-color: black;
+  height: 100%;
+  width: 100%;
+  position: relative;
+}
+
+#banner img {
+  background: url(/dist/images/36140-429433.png) no-repeat center center fixed 100% 100%;
+  background-size: cover;
+  height: inherit;
+  width: inherit;
+}
+
+#bannertext {
+  position: fixed;
+  background-color: rgba(246, 118, 2, 0.95);
+  margin: 5em;
+  padding: 1.5em 2em;
+  width: 30%;
+  color: white;
+}
+
+#bannertext button {
+  margin: 0.5em 0.5em;
+}

@@ -1,6 +1,6 @@
 // Load Bootstrap JS
 import bootstrap from 'bootstrap'
-import $ from 'jquery'
+import $, { data } from 'jquery'
 import Chart from 'chart.js/auto';
 
 // Load Styles
@@ -8,6 +8,7 @@ import '../scss/main.scss';
 import { hide } from '@popperjs/core';
 
 $(function(){
+  updateChartType();
     Parallax();
 	$(window).on("scroll", function() {
 		Parallax();
@@ -25,34 +26,30 @@ function Parallax() {
 	});
 }
 
-$( ".dropdown" ).on('change',function() {
-	chart.options.data[0].dataPoints = [];
-  var e = document.getElementById("dd");
-	var selected = e.options[e.selectedIndex].value;
-  dps = jsonData[selected];
-  for(var i in dps) {
-  	var xVal = dps[i].x;
-    chart.options.data[0].dataPoints.push({x: new Date(xVal), y: dps[i].y});
+var dataObjects = [
+  {
+    labels: ['12-13', '13-14', '14-15', '15-16', '16-17', '17-18', '18-19'],
+    datasets: [{
+      label: 'Employees',
+      data: [4, 7, 12, 25, 35, 50, 60, 70, 120],
+      backgroundColor: ["#55b5cd", "#370665", "#35589A", "#F14A16", "#FC9918", "#3FA796", "#9B0000", "#F9C5D5", "#04293A"],
+    }]
+  },
+  {
+    labels: ['12-13', '13-14', '14-15', '15-16', '16-17', '17-18', '18-19'],
+    datasets: [{
+      label: 'Revenue',
+    data: [5, 7, 13, 27, 35, 50, 60, 70, 90],
+      backgroundColor: ["#55b5cd", "#370665", "#35589A", "#F14A16", "#FC9918", "#3FA796", "#9B0000", "#F9C5D5", "#04293A"],
+    }]
   }
-  chart.render();
-});
+]
 
 var ctx = document.getElementById('myChart').getContext('2d');
 let delayed;
 var myChart = new Chart(ctx, {
   type: 'bar',
-  data: {
-    labels: ['12-13', '13-14', '14-15', '15-16', '16-17', '17-18', '18-19'],
-    datasets: [{
-      label: 'Employees',
-      data: [4, 7, 12, 25, 35, 50, 60, 70, 120],
-      backgroundColor: "#55b5cd",
-    }/* , {
-      label: 'Revenue',
-      data: [2, 29, 5, 5, 2, 3, 10],
-      backgroundColor: "#336699 ",
-    } */]
-  },
+  data: dataObjects[0],
   options: {
     responsive: true,
     animation: {
@@ -69,6 +66,35 @@ var myChart = new Chart(ctx, {
     },
   }
 });
+
+function updateChartType() {
+  // Destroy the previous chart
+  myChart.destroy();
+  // Draw a new chart on the basic of dropdown
+  myChart = new Chart(ctx, {
+  type: 'bar',  // Select chart type from dropdown
+  data: dataObjects[document.getElementById("chartType").value],
+  options: {
+    responsive: true,
+    animation: {
+      onComplete: () => {
+        delayed = true;
+      },
+      delay: (context) => {
+        let delay = 0;
+        if (context.type === 'data' && context.mode === 'default' && !delayed) {
+          delay = 1000;
+        }
+        return delay;
+      },
+    },
+  }
+  });
+};
+
+document.getElementById('chartType').onchange = function () {
+  updateChartType();
+};
 
 var ctx1 = document.getElementById('workforce-chart').getContext('2d');
 var workforceChart = new Chart(ctx1, {
@@ -247,36 +273,16 @@ window.onscroll = () => {
     },
     "retina_detect": true
   });
-      
-  
-  var Popup = {
-    Show: function(geography, data, element, e) {
-      e.stopPropagation();
-      
-      var el =
-        '<div class="popup-card"> \
-          <span class="country">' + geography.properties.name + '</span>\
-          </div>';
-              
-      var $el = $(el).css({
-        top: e.clientY - 10,
-        left: e.clientX
-      });
-  
-      Popup.Hide();
-        $('body').append($el);
-      },
-  
-      Hide: function() {
-          $('body .popup-card').remove();
-      }
-  };
   
 var dataMap = new Datamap({
 element: document.getElementById('map'),
 scope: 'world',
+responsive: true,
 projection: 'mercator',
 geographyConfig: {
+  popupTemplate: function(geography, data) { //this function should just return a string
+    return '<div class="hoverinfo"><strong>' + geography.properties.name + '</strong></div>';
+  },
     highlightBorderColor: '#fff',
     highlightBorderWidth: 1,
     highlightFillColor: '#1e002a',
@@ -302,6 +308,9 @@ data: {
 },
 });
 
+window.addEventListener('resize', function() {
+  dataMap.resize();
+});
 
 /* $(function () {
 	//variable for the 'stroke-dashoffset' unit

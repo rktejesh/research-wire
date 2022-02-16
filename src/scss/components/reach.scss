@@ -1,0 +1,25 @@
+#map-container {
+  width: 100%;
+  height: auto;
+}
+#map {
+  width: 100%;
+  height: 600px;
+  svg {
+    overflow: visible !important;
+  }
+}
+/**
+   * Fade Up Animations
+   */
+.countries-list {
+  display: block;
+  position: relative;
+  z-index: 100;
+}
+.countries-list li {
+  cursor: pointer;
+}
+.countries-list li:hover {
+  color: #ed1f24;
+}

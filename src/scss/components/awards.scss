@@ -2,9 +2,6 @@
 	width: 100%;
 	background-color: #f9f7f7;
 	z-index: -1;
-  }
-.reach {
-  position: relative;
 }
 
 .nav {
@@ -19,25 +16,25 @@
     padding-bottom: 0.5rem;
     letter-spacing: 0.3rem;
   }
-}
-h3.span {
-  letter-spacing: 0.15rem;
-  font-family: "ROBOTO", sans-serif;
-  font-weight: 400;
-  color: #faebd7;
-  z-index: 4;
-}
-span {
-  &:hover {
-    color: #ff0266;
-    font-weight: 500;
+  h3.span {
+    letter-spacing: 0.15rem;
+    font-weight: 400;
+    color: #faebd7;
+    z-index: 4;
+  }
+  span {
+    &:hover {
+      color: #ff0266;
+      font-weight: 500;
+    }
   }
 }
+
 a {
   text-decoration: none;
 }
 
-.loader {
+.nav {
   span {
     color: #00aeff;
     text-shadow: 0 0 0 #faebd7;
@@ -195,50 +192,6 @@ a {
     }
   }
 }
-@media (min-width: 720px) {
-  .nav {
-    h1 {
-      font-size: 5vw;
-    }
-    h2 {
-      font-size: 3vw;
-    }
-  }
-  .slider {
-    h1 {
-      font-size: 5vw;
-    }
-    h2 {
-      font-size: 3vw;
-    }
-  }
-  .nav-tab {
-    font-size: 3vw;
-  }
-}
-@media (min-width: 540px) {
-  .nav {
-    h1 {
-      font-size: 3vw;
-    }
-    h2 {
-      font-size: 2vw;
-      letter-spacing: 0.2vw;
-    }
-  }
-  .slider {
-    h1 {
-      font-size: 8vw;
-    }
-    h2 {
-      font-size: 2vw;
-      letter-spacing: 0.2vw;
-    }
-  }
-  .nav-tab {
-    font-size: 1.2vw;
-  }
-}
 
 .svg-container{
   height: auto;
@@ -271,7 +224,7 @@ a {
 	stroke-dasharray: 2000;
 }
 
-path1{
+.path1{
 	stroke-dashoffset: 2000;
 	stroke-dasharray: 2000;
 }

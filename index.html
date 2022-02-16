@@ -12,6 +12,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500;600;700;800&display=swap"
         rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Droid+Sans" />
 </head>
 
 <body>
@@ -51,7 +52,6 @@
                 </li>
                 <li class="d-flex flex-row justify-content-end">
                     <p>Our Reach</p><a class="reach" href="#reach">
-
                     </a>
                 </li>
             </ul>
@@ -73,7 +73,7 @@
                 <div class="col-lg-4 d-flex flex-row justify-content-center align-items-center">
                     <img src="/dist/images/director.jpeg" class="img-fluid d-block mx-auto" style="max-height: 450px;">
                 </div>
-                <div class="col-lg-4">
+                <div class="col-lg-4 d-flex flex-column justify-content-around">
                     <h1 class="p-2">Director's Message</h1>
                     <p class="p-2">
                         Researchwire is growing rapidly due to strong client engagement and satisfaction. We understand
@@ -155,9 +155,19 @@
     </section>
     <section id="about-us">
         <div class="container-fluid p-5">
-            <div class="row d-flex flex-row justify-content-center align-items-center">
+            <div class="row d-flex flex-row justify-content-center">
+                <div class="col-lg-4 d-flex flex-column justify-content-between align-items-center">
+                    <h2 class="p-2">Employee Engagement uplifts the Revenue</h2>
+                </div>
+                <div class="col-lg-4 d-flex flex-column justify-content-end align-items-end">
+                    <lottie-player src="https://assets8.lottiefiles.com/packages/lf20_lxb7llek.json"
+                        background="transparent" speed="1" style="width: inherit; align-self: flex-end; max-width: 30%;"
+                        loop autoplay>
+                    </lottie-player>
+                </div>
+            </div>
+            <div class="row d-flex flex-row justify-content-center">
                 <div class="col-lg-4 d-flex flex-column justify-content-center align-items-center">
-                    <h1 class="p-2">Employee Engagement uplifts the Revenue</h1>
                     <ul class="p-2" style="list-style-type: none;">
                         <li>We had phenomenal growth during the last 2 years<br></li>
                         <li>Our headcount increased by a whopping 76%<br></li>
@@ -166,9 +176,9 @@
                     </ul>
                 </div>
                 <div class="col-lg-4 d-flex flex-column justify-content-center align-items-start">
-                    <select class="dropdown" id="dd">
-                        <option value="dps1" selected="selected">DataPoints 1</option>
-                        <option value="dps2">DataPoints 2</option>
+                    <select name="chartType" id="chartType" class="dropdown">
+                        <option value="0">Employee Count</option>
+                        <option value="1">Revenue</option>
                     </select>
                     <canvas id="myChart" height="200"></canvas>
                 </div>
@@ -177,13 +187,18 @@
     </section>
     <section id="workforce">
         <div class="container-fluid p-5">
-            <div class="row d-flex flex-row justify-content-center align-items-center">
+            <div class="row d-flex flex-row justify-content-center">
+                <div class="col-lg-4 d-flex flex-column justify-content-between align-items-center">
+                </div>
+                <div class="col-lg-4 d-flex flex-column justify-content-between align-items-center">
+                    <h2 class="p-2">Employee Growth & Developing our workforce</h2>
+                </div>
+            </div>
+            <div class="row d-flex flex-row justify-content-center">
                 <div class="col-lg-4 d-flex flex-column justify-content-center align-items-start p-5">
                     <canvas id="workforce-chart" height="200"></canvas>
                 </div>
                 <div class="col-lg-4 d-flex flex-column justify-content-center align-items-center">
-                    <h1 class="p-2">Employee Growth<br>
-                        Enabling & developing our workforce</h1>
                     <ul class="p-2" style="list-style-type: none;">
                         <li>We had phenomenal growth during the last 2 years<br></li>
                         <li>Our headcount increased by a whopping 76%<br></li>
@@ -194,69 +209,106 @@
             </div>
         </div>
     </section>
-    <section id="reward" class="d-flex align-items-center">
-        <div class="container-fluid p-5 position-absolute d-flex flex-row justify-content-center align-items-center"
-            style="height: inherit;">
-            <div class="nav col-lg-6 d-flex flex-column justify-content-between">
-                <div>
-                    <h1>PRAVEEN SINGH</h1>
-                    <h3 class="span loader">
-                        <span class='m'>R</span>
-                        <span class='m'>A</span>
-                        <span class='m'>N</span>
-                        <span class='m'>K</span>
-                        <span class='m'>E</span>
-                        <span class='m'>D</span>
-                        <span class="m">&nbsp;</span>
-                        <span class='m'>I</span>
-                        <span class='m'>N</span>
-                        <span class='m'>&nbsp;</span>
-                        <span class='m'>I</span>
-                        <span class='m'>A</span>
-                        <span class='m'>M</span>
-                        <span class='m'>3</span>
-                        <span class='m'>0</span>
-                        <span class='m'>0</span>
-                        <span class='m'>&nbsp;</span>
-                        <span class='m'>F</span>
-                        <span class='m'>O</span>
-                        <span class='m'>R</span>
-                        <span class='m'><br></span>
-                        <span class='m'>I</span>
-                        <span class='m'>P</span>
-                        <span class='m'>&nbsp;</span>
-                        <span class='m'>M</span>
-                        <span class='m'>A</span>
-                        <span class='m'>N</span>
-                        <span class="m">A</span>
-                        <span class='m'>G</span>
-                        <span class='m'>E</span>
-                        <span class='m'>M</span>
-                        <span class="m">E</span>
-                        <span class='m'>N</span>
-                        <span class="m">T</span>
-                    </h3>
+    <section id="customer-insights">
+        <div class="container-fluid p-5">
+            <div class="d-flex flex-column">
+                <div class="row d-flex flex-row justify-content-center">
+                    <div class="col-lg-3 align-self-center">
+                        Thomson Innovations
+                        Questel’s orbit
+                        IEEE
+                        ACM
+                        Pubmed
+                        And many others e.g. Google Scholar, Espacenet etc.
+                    </div>
+                    <div class="col">
+                        <img src="/dist/images/Screenshot 2022-02-16 215211.jpg" alt="" style="width: inherit;"
+                            srcset="">
+                    </div>
+                    <div class="col-lg-3 d-flex flex-column justify-content-between">
+                        <div class="row">
+                            Since 2010
+                            2000+ client engagements
+                            50,000 + Patents analysis
+                            10000 + Claim charts
+                            250+ successful patent litigation defense cases
+                        </div>
+                        <div class="row">
+                            Elec. & Telecom., Wireless, Laser, Audio/Video, Semiconductors, LED
+                            Computer Networks, IOT & wearables
+                            Automobiles and consumer electronics
+                            Pharmaceuticals, Bio sciences, Biotechnnology and Medical equipment's
+                            Many others
+                        </div>
+                    </div>
                 </div>
             </div>
-            <div class="col-lg-3 d-flex align-items-center justify-content-center">
-                <img src="/dist/images/DSN-9997_IAM_Strategy_300_2021_recommended_logos_new_batch_general.png" alt=""
-                    srcset="" class="reward-img">
-            </div>
-
         </div>
-        <div id="particles-js"></div>
+    </section>
+    <section id="reward" class="d-flex">
+        <div class="container-fluid p-5 d-flex flex-row justify-content-center align-items-center position-relative"
+            style="height: inherit;">
+            <div class="d-flex position-absolute w-100 justify-content-evenly align-items-center flex-wrap">
+                <div class="nav d-flex flex-row justify-content-between">
+                    <div class="d-flex flex-column">
+                        <h1>PRAVEEN SINGH</h1>
+                        <h3 class="span loader">
+                            <span class='m'>R</span>
+                            <span class='m'>A</span>
+                            <span class='m'>N</span>
+                            <span class='m'>K</span>
+                            <span class='m'>E</span>
+                            <span class='m'>D</span>
+                            <span class="m">&nbsp;</span>
+                            <span class='m'>I</span>
+                            <span class='m'>N</span>
+                            <span class='m'>&nbsp;</span>
+                            <span class='m'>I</span>
+                            <span class='m'>A</span>
+                            <span class='m'>M</span>
+                            <span class='m'>3</span>
+                            <span class='m'>0</span>
+                            <span class='m'>0</span>
+                            <span class='m'>&nbsp;</span>
+                            <span class='m'>F</span>
+                            <span class='m'>O</span>
+                            <span class='m'>R</span>
+                            <span class='m'><br></span>
+                            <span class='m'>I</span>
+                            <span class='m'>P</span>
+                            <span class='m'>&nbsp;</span>
+                            <span class='m'>M</span>
+                            <span class='m'>A</span>
+                            <span class='m'>N</span>
+                            <span class="m">A</span>
+                            <span class='m'>G</span>
+                            <span class='m'>E</span>
+                            <span class='m'>M</span>
+                            <span class="m">E</span>
+                            <span class='m'>N</span>
+                            <span class="m">T</span>
+                        </h3>
+                    </div>
+                </div>
+                <div class="col-lg-3 d-flex align-items-center justify-content-center">
+                    <img src="/dist/images/DSN-9997_IAM_Strategy_300_2021_recommended_logos_new_batch_general.png"
+                        alt="" srcset="" class="reward-img">
+                </div>
+            </div>
+            <div id="particles-js"></div>
+        </div>
     </section>
     <section id="reach">
         <div class="container-fluid">
-            <div class="row d-flex flex-row justify-content-center align-items-center p-3">
-                <div class="col-lg-6">
+            <div class="row d-flex flex-row p-3 justify-content-center">
+                <div class="col-lg-6" style="height: inherit;">
                     <div id="map-container">
-                        <div id="map" class="position-absolute h-50 w-50">
+                        <div id="map" class="" style="height: 70vh;">
 
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-4 d-flex flex-column justify-content-center align-items-start p-5">
+                <div class="col-lg-4 d-flex flex-column justify-content-center align-items-center p-5">
                     <h1 class="p-2">Our Reach</h1>
                     <ul class="p-2" style="list-style-type: none;">
                         <li>20 AM LAW FIRMS</li>
@@ -270,16 +322,49 @@
             </div>
         </div>
     </section>
-    <section>
-        <div class="trees" class="col-lg-4">
+    <footer class="footer">
+        <div class="footer-details">
+            <div class="d-flex justify-content-center mb-4 pb-4 g-0">
+                <div class="col-lg-3 mb-md-0 mb-4 d-flex pb-5">
+                    <i class="circular secondary fa fa-phone icon p-4 d-flex align-items-center justify-content-center"></i>
+                </div>
+                <div class="col-lg-3 mb-md-0 mb-4 d-flex pb-5">
+                    <div class="w-100">
+                        <div class="text-center">
+                            <div class="d-flex align-items-center justify-content-center p-2">
+                                <i
+                                    class="circular secondary fa fa-solid fa-envelope icon p-4 d-flex align-items-center justify-content-center"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 mb-md-0 mb-4 d-flex pb-5">
+                    <div class="w-100">
+                        <div class="text-center">
+                            <div class="d-flex align-items-center justify-content-center p-2">
+                                <i
+                                    class="circular secondary fa fa-solid fa-location-dot icon p-4 d-flex align-items-center justify-content-center"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
-    </section>
-    <script src="/src/js/d3.v3.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
-    <script src="/src/js/topojson.js"></script>
-    <script src="/src/js/datamaps.world.min.js"></script>
-    <script src="dist/js/main.js"></script>
+        <div class="d-flex flex-row justify-content-between">
+            <lottie-player src="https://assets2.lottiefiles.com/packages/lf20_ligchtyg.json" background="transparent"
+                speed="1" style="width: inherit;" loop autoplay></lottie-player>
+            <div class="d-flex flex-column justify-content-end">
 
+            </div>
+        </div>
+        </section>
+        <script src="/src/js/d3.v3.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
+        <script src="/src/js/topojson.js"></script>
+        <script src="/src/js/datamaps.world.min.js"></script>
+        <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
+        <script type="text/javascript" src="dist/js/main.js"></script>
+        <script src="https://kit.fontawesome.com/975cc09c46.js" crossorigin="anonymous"></script>
 </body>
 
 </html>

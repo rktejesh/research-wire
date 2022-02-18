@@ -1,7 +1,7 @@
 #particles-js {
-	width: 100%;
-	background-color: #f9f7f7;
-	z-index: -1;
+  width: 100%;
+  background-color: #f9f7f7;
+  z-index: -1;
 }
 
 .nav {
@@ -190,5 +190,41 @@ a {
       animation-delay: 3.3s;
       -webkit-animation-delay: 3.3s;
     }
+  }
+}
+
+@media (max-width: 720px) {
+  .nav {
+    h1 {
+      font-size: 5vw;
+    }
+    h3 {
+      font-size: 2vw;
+    }
+  }
+  .slider {
+    h1 {
+      font-size: 5vw;
+    }
+    h2 {
+      font-size: 3vw;
+    }
+  }
+  .nav-tab {
+    font-size: 3vw;
+  }
+}
+@media (max-width: 540px) {
+  .nav {
+    h1 {
+      font-size: 2vw;
+    }
+    h3 {
+      font-size: 2vw;
+      letter-spacing: 0.2vw;
+    }
+  }
+  .nav-tab {
+    font-size: 1.2vw;
   }
 }

@@ -4,6 +4,8 @@ import $, { data } from 'jquery'
 import Chart from 'chart.js/auto';
 import ChartDataLabels from 'chartjs-plugin-datalabels';
 import Datamap from 'datamaps'
+require('waypoints/lib/noframework.waypoints.min')
+
 Chart.register(ChartDataLabels);
 
 // Load Styles
@@ -54,6 +56,9 @@ var myChart = new Chart(ctx, {
   type: 'bar',
   data: dataObjects[0],
   options: {
+    elements: {
+      center: false
+    },
     responsive: true,
     animation: {
       onComplete: () => {
@@ -78,6 +83,9 @@ function updateChartType() {
   type: 'bar',  // Select chart type from dropdown
   data: dataObjects[document.getElementById("chartType").value],
   options: {
+    elements: {
+      center: false
+    },
     responsive: true,
     animation: {
       onComplete: () => {
@@ -121,6 +129,90 @@ function updateChartType() {
 document.getElementById('chartType').onchange = function () {
   updateChartType();
 };
+
+Chart.register({
+  id: 'centertext',
+  beforeDraw: function(chart) {
+    if (chart.config.options.elements.center) {
+        // Get ctx from string
+        var ctx = chart.ctx;
+        // Get options from the center object in options
+        var centerConfig = chart.config.options.elements.center;
+        var fontStyle = centerConfig.fontStyle || 'Arial';
+        var txt = centerConfig.text;
+        var color = centerConfig.color || '#000';
+        var maxFontSize = centerConfig.maxFontSize || 75;
+        var sidePadding = centerConfig.sidePadding || 20;
+        var sidePaddingCalculated = (sidePadding / 100) * (chart._metasets[chart._metasets.length-1].data[0].innerRadius * 2)
+        // Start with a base font of 30px
+        ctx.font = "30px " + fontStyle;
+
+        // Get the width of the string and also the width of the element minus 10 to give it 5px side padding
+        var stringWidth = ctx.measureText(txt).width;
+        var elementWidth = (chart._metasets[chart._metasets.length-1].data[0].innerRadius * 2) - sidePaddingCalculated;            
+
+        // Find out how much the font can grow in width.
+        var widthRatio = elementWidth / stringWidth;
+        var newFontSize = Math.floor(30 * widthRatio);
+        var elementHeight = (chart._metasets[chart._metasets.length-1].data[0].innerRadius * 2);
+
+        // Pick a new font size so it will not be larger than the height of label.
+        var fontSizeToUse = Math.min(newFontSize, elementHeight, maxFontSize);
+        var minFontSize = centerConfig.minFontSize;
+        var lineHeight = centerConfig.lineHeight || 5;
+        var wrapText = false;
+
+        if (minFontSize === undefined) {
+            minFontSize = 10;
+        }
+
+        if (minFontSize && fontSizeToUse < minFontSize) {
+            fontSizeToUse = minFontSize;
+            wrapText = true;
+        }
+
+        // Set font settings to draw it correctly.
+        ctx.textAlign = 'center';
+        ctx.textBaseline = 'middle';
+        var centerX = ((chart.chartArea.left + chart.chartArea.right) / 2);
+        var centerY = ((chart.chartArea.top + chart.chartArea.bottom) / 2);
+        ctx.font = fontSizeToUse + "px " + fontStyle;
+        ctx.fillStyle = color;
+
+        if (!wrapText) {
+            ctx.fillText(txt, centerX, centerY);
+            return;
+        }
+
+        var words = txt.split(' ');
+        var line = '';
+        var lines = [];
+
+        // Break words up into multiple lines if necessary
+        for (var n = 0; n < words.length; n++) {
+            var testLine = line + words[n] + ' ';
+            var metrics = ctx.measureText(testLine);
+            var testWidth = metrics.width;
+            if (testWidth > elementWidth && n > 0) {
+                lines.push(line);
+                line = words[n] + ' ';
+            } else {
+                line = testLine;
+            }
+        }
+
+        // Move the center up depending on line height and number of lines
+        centerY -= (lines.length / 2) * lineHeight;
+
+        for (var n = 0; n < lines.length; n++) {
+            ctx.fillText(lines[n], centerX, centerY);
+            centerY += lineHeight;
+        }
+        //Draw text in center
+        ctx.fillText(line, centerX, centerY);
+    }
+}
+});
 
 var ctx1 = document.getElementById('workforce-chart').getContext('2d');
 var workforceChart = new Chart(ctx1, {
@@ -188,9 +280,9 @@ var workforceChart = new Chart(ctx1, {
         text: 'Red is 2/3 of the total numbers',
         color: '#FF6384', // Default is #000000
         fontStyle: 'Arial', // Default is Arial
-        sidePadding: 20, // Default is 20 (as a percentage)
+        /* sidePadding: 20, // Default is 20 (as a percentage)
         minFontSize: 25, // Default is 20 (in px), set to false and text will not wrap.
-        lineHeight: 25 // Default is 25 (in px), used for when text wraps
+        lineHeight: 25 // Default is 25 (in px), used for when text wraps */
       }
     }
   }
@@ -479,7 +571,7 @@ $(function() {
     var elDistanceToTop = document.querySelector('.path3').getBoundingClientRect().top;
     var elDistanceFromTop = window.innerHeight - elDistanceToTop - 1.5*document.querySelector('.path3').getBoundingClientRect().height;
     var scrollPercentage = elDistanceFromTop / window.innerHeight;
-    var $percentageComplete = scrollPercentage * 100;
+    var $percentageComplete = scrollPercentage * 50;
     //convert dashoffset pixel value to interger
     var $newUnit = parseInt($dashOffset, 10);
     //get the value to be subtracted from the 'stroke-dashoffset'
@@ -488,3 +580,76 @@ $(function() {
     $(".path3").css("stroke-dashoffset", $newUnit - $offsetUnit);
   });
 });
+/* 
+$('#1').waypoint(function() {
+  increment(1, 87);
+}, {offset: '75%'});
+
+$('#2').waypoint(function() {
+  increment(2, 43);
+}, {offset: '75%'});
+
+$('#3').waypoint(function() {
+  increment(3, 79);
+}, {offset: '75%'});
+
+$('#4').waypoint(function() {
+  increment(4, 68);
+}, {offset: '75%'});
+
+$('#5').waypoint(function() {
+  increment(5, 46);
+}, {offset: '75%'});
+
+$('#6').waypoint(function() {
+  increment(6, 14);
+}, {offset: '75%'});
+
+function increment(elem, finalVal) {
+  var currVal = parseInt(document.getElementById(elem).innerHTML, 10);
+  if (currVal < finalVal) {
+    currVal++;
+    document.getElementById(elem).innerHTML = currVal + "%";
+
+    setTimeout(function() {
+      increment(elem, finalVal);
+    }, 40)
+  }
+}; */
+
+$(function(){
+	var inputs = $('.input');
+	var paras = $('.description-flex-container').find('p');
+	inputs.on('click',function(){
+		var t = $(this),
+				ind = t.index(),
+				matchedParas = paras.eq(ind);
+		t.add(matchedParas).addClass('active');
+		inputs.not(t).add(paras.not(matchedParas)).removeClass('active');
+	});
+});
+
+var waypoint = new Waypoint({
+  element: document.getElementById('num-svg'),
+  handler: function(direction) {
+    console.log(this.element.getAttribute('data-count'));
+    countNum = this.element.text;
+    countTo = this.element.getAttribute('data-count');
+    this.element.animate({
+      text: countTo
+    },
+    {
+      duration: 2000,
+      easing: 'swing',
+      step: function() {
+        this.element.text(Math.floor(this.countNum));
+      },
+      complete: function() {
+        this.element.text(this.countNum);
+        //alert('finished');
+      }
+
+    })
+  },
+  offset: '75%'
+})

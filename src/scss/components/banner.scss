@@ -31,8 +31,12 @@
   background-color: rgba(246, 118, 2, 0.95);
   margin-left: 5em;
   padding: 1.5em 2em;
-  width: 30%;
+  width: 40%;
   color: white;
+  @media screen and (max-width: $mq-lg) {
+    width: 70%;
+    margin-left: 0%;
+  }
 }
 
 #bannertext button {

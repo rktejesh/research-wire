@@ -33,7 +33,9 @@
     "webpack-cli": "^4.8.0"
   },
   "dependencies": {
-    "chart.js": "^3.7.1",
+    "chart.js": "^3.6.0",
+    "chartjs-plugin-datalabels": "^2.0.0",
+    "datamaps": "^0.5.9",
     "jquery": "^3.6.0",
     "particlesjs": "^2.2.3"
   }

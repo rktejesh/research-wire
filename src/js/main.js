@@ -2,6 +2,9 @@
 import bootstrap from 'bootstrap'
 import $, { data } from 'jquery'
 import Chart from 'chart.js/auto';
+import ChartDataLabels from 'chartjs-plugin-datalabels';
+import Datamap from 'datamaps'
+Chart.register(ChartDataLabels);
 
 // Load Styles
 import '../scss/main.scss';
@@ -88,6 +91,29 @@ function updateChartType() {
         return delay;
       },
     },
+    scales: {
+      x: {
+        grid: {
+          drawOnChartArea: false,
+        },
+      },
+      y: {
+        grid: {
+          drawOnChartArea: false,
+        },
+      }
+    },
+    plugins: {
+      datalabels: {
+        anchor: 'end',
+        align: 'top',
+        color: '#000',
+        font: {
+          weight: 'bold',
+          size: 15
+        },
+      }
+    }
   }
   });
 };
@@ -121,9 +147,54 @@ var workforceChart = new Chart(ctx1, {
         return delay;
       },
     },
+    scales: {
+      x: {
+        grid: {
+          drawOnChartArea: false,
+          display: false,
+          drawBorder: false,
+          drawTicks: false,
+        },
+        ticks: {
+          display: false
+        }
+      },
+      y: {
+        grid: {
+          drawOnChartArea: false,
+          display: false,
+          drawBorder: false,
+          drawTicks: false,
+        },
+        ticks: {
+          display: false
+        }
+      }
+    },
+    plugins: {
+      datalabels: {
+        color: '#fff',
+        font: {
+          weight: 'bold',
+          size: 15
+        },
+        formatter: function(value, context) {
+          return Math.round(value) + '%';
+        }
+      },
+    },
+    elements: {
+      center: {
+        text: 'Red is 2/3 of the total numbers',
+        color: '#FF6384', // Default is #000000
+        fontStyle: 'Arial', // Default is Arial
+        sidePadding: 20, // Default is 20 (as a percentage)
+        minFontSize: 25, // Default is 20 (in px), set to false and text will not wrap.
+        lineHeight: 25 // Default is 25 (in px), used for when text wraps
+      }
+    }
   }
 });
-
 
 const sections = document.querySelectorAll("section");
 const navLi = document.querySelectorAll(".navbar ul li a");
@@ -274,65 +345,52 @@ window.onscroll = () => {
     "retina_detect": true
   });
   
-var dataMap = new Datamap({
-element: document.getElementById('map'),
-scope: 'world',
-responsive: true,
-projection: 'mercator',
-geographyConfig: {
-  popupTemplate: function(geography, data) { //this function should just return a string
-    return '<div class="hoverinfo"><strong>' + geography.properties.name + '</strong></div>';
+var mapData = {
+  element: document.getElementById('map'),
+  scope: 'world',
+  responsive: true,
+  projection: 'mercator',
+  geographyConfig: {
+    popupTemplate: function(geography, data) { //this function should just return a string
+      return '<div class="hoverinfo"><strong>' + geography.properties.name + '</strong></div>';
+    },
+      highlightBorderColor: '#fff',
+      highlightBorderWidth: 1,
+      highlightFillColor: '#1e002a',
+      popupOnHover: true
   },
-    highlightBorderColor: '#fff',
-    highlightBorderWidth: 1,
-    highlightFillColor: '#1e002a',
-    popupOnHover: true
-},
+  
+  fills: {
+      defaultFill: '#dee2e6',
+      gt: '#112d4e'
+  },
+  data: {
+      USA: { fillKey: 'gt' },
+      CAN: { fillKey: 'gt' },
+      FRA: { fillKey: 'gt' },
+      DEU: { fillKey: 'gt' },
+      DNK: { fillKey: 'gt' },
+      NOR: { fillKey: 'gt' },
+      CHN: { fillKey: 'gt' },
+      JPN: { fillKey: 'gt' },
+      TWN: { fillKey: 'gt' },
+      PRK: { fillKey: 'gt' },
+      KOR: { fillKey: 'gt' },
+  },
+  }
 
-fills: {
-    defaultFill: '#dee2e6',
-    gt: '#112d4e'
-},
-data: {
-    USA: { fillKey: 'gt' },
-    CAN: { fillKey: 'gt' },
-    FRA: { fillKey: 'gt' },
-    DEU: { fillKey: 'gt' },
-    DNK: { fillKey: 'gt' },
-    NOR: { fillKey: 'gt' },
-    CHN: { fillKey: 'gt' },
-    JPN: { fillKey: 'gt' },
-    TWN: { fillKey: 'gt' },
-    PRK: { fillKey: 'gt' },
-    KOR: { fillKey: 'gt' },
-},
-});
+var dataMap = new Datamap(mapData);
 
-window.addEventListener('resize', function() {
-  dataMap.resize();
-});
+$(window).on('resize', function() {
+  document.getElementById('map').innerHTML = "";
+  console.log(document.getElementById('map').innerHTML);
+  var dataMap = new Datamap(mapData);
+})
 
-/* $(function () {
-	//variable for the 'stroke-dashoffset' unit
-	var $dashOffset = $(".path").css("stroke-dashoffset");
-	//on a scroll event - execute function
-	$(window).on('scroll', function () {
-		//calculate how far down the page the user is
-		var $percentageComplete =
-			($(window).scrollTop() / ($("html").height() - $(window).height())) * 100;
-		//convert dashoffset pixel value to interger
-		var $newUnit = parseInt($dashOffset, 10);
-		//get the value to be subtracted from the 'stroke-dashoffset'
-		var $offsetUnit = $percentageComplete * ($newUnit / 100);
-		//set the new value of the dashoffset to create the drawing effect
-		$(".path").css("stroke-dashoffset", $newUnit - $offsetUnit);
-	});
-});
- */
-
+// Function for all svg animations
 $(function() {
   //variable for the 'stroke-dashoffset' unit
-  var $dashOffset = $(".path").css("stroke-dashoffset");
+  var $dashOffset = $(".path1").css("stroke-dashoffset");
   //on a scroll event - execute function
   $(window).on('scroll',function() {
     //calculate how far down the page the user is 
@@ -342,27 +400,44 @@ $(function() {
     //get the value to be subtracted from the 'stroke-dashoffset'
     var $offsetUnit = $percentageComplete * ($newUnit / 100);
     //set the new value of the dashoffset to create the drawing effect
+    $(".path1").css("stroke-dashoffset", $newUnit - $offsetUnit);
+});
+});
+
+$(function() {
+  //variable for the 'stroke-dashoffset' unit
+  var $dashOffset = $(".path").css("stroke-dashoffset");
+  //on a scroll event - execute function
+  $(window).on('scroll', function() {
+    //calculate how far down the page the user is 
+    var elDistanceToTop = document.querySelector('.path').getBoundingClientRect().top;
+    var elDistanceFromTop = window.innerHeight - elDistanceToTop - document.querySelector('.path').getBoundingClientRect().height/2;
+    var scrollPercentage = elDistanceFromTop / window.innerHeight;
+    var $percentageComplete = scrollPercentage * 50;
+    //convert dashoffset pixel value to interger
+    var $newUnit = parseInt($dashOffset, 10);
+    //get the value to be subtracted from the 'stroke-dashoffset'
+    var $offsetUnit = $percentageComplete * ($newUnit / 100);
+    //set the new value of the dashoffset to create the drawing effect
     $(".path").css("stroke-dashoffset", $newUnit - $offsetUnit);
-});
+  });
 });
 
 
-/* 
-// Get a reference to the <path>
-var path = document.querySelector('.path');
+var path2 = document.querySelector('.path2');
 
 // Get length of path... ~577px in this case
-var pathLength = path.getTotalLength();
+var pathLength2 = path2.getTotalLength();
 
 // Make very long dashes (the length of the path itself)
-path.style.strokeDasharray = pathLength + ' ' + pathLength;
+path2.style.strokeDasharray = pathLength2 + ' ' + pathLength2;
 
 // Offset the dashes so the it appears hidden entirely
-path.style.strokeDashoffset = pathLength;
+path2.style.strokeDashoffset = pathLength2;
 
 // Jake Archibald says so
 // https://jakearchibald.com/2013/animated-line-drawing-svg/
-path.getBoundingClientRect();
+path2.getBoundingClientRect();
 
 // When the page scrolls...
 window.addEventListener("scroll", function(e) {
@@ -370,20 +445,46 @@ window.addEventListener("scroll", function(e) {
   // What % down is it? 
   // https://stackoverflow.com/questions/2387136/cross-browser-method-to-determine-vertical-scroll-percentage-in-javascript/2387222#2387222
   // Had to try three or four differnet methods here. Kind of a cross-browser nightmare.
-  var scrollPercentage = (document.documentElement.scrollTop + document.body.scrollTop) / (document.documentElement.scrollHeight - document.documentElement.clientHeight);
-    
+  var elDistanceToTop2 = path2.getBoundingClientRect().top
+  var elDistanceFromTop2 = elDistanceToTop2 - window.innerHeight
+  var scrollPercentage2 = elDistanceFromTop2 / window.innerHeight
+
+  //var scrollPercentage = (document.documentElement.scrollTop + document.body.scrollTop) / (document.documentElement.scrollHeight - document.documentElement.clientHeight);
+  //console.log(elDistanceToTop - window.innerHeight);
+  
+  //console.log(window.scrollY);
   // Length to offset the dashes
-  var drawLength = pathLength * scrollPercentage;
+  var drawLength2 = pathLength2 * scrollPercentage2;
   
   // Draw in reverse
-  path.style.strokeDashoffset = pathLength - drawLength;
+  path2.style.strokeDashoffset = pathLength2 + drawLength2;
     
   // When complete, remove the dash array, otherwise shape isn't quite sharp
  // Accounts for fuzzy math
-  if (scrollPercentage >= 0.99) {
-    path.style.strokeDasharray = "none";
+  if (scrollPercentage2 >= 0.99) {
+    path2.style.strokeDasharray = "none";
+    
   } else {
-    path.style.strokeDasharray = pathLength + ' ' + pathLength;
+    path2.style.strokeDasharray = pathLength2 + ' ' + pathLength2;
   }
   
-}); */
+});
+
+$(function() {
+  //variable for the 'stroke-dashoffset' unit
+  var $dashOffset = $(".path3").css("stroke-dashoffset");
+  //on a scroll event - execute function
+  $(window).on('scroll', function() {
+    //calculate how far down the page the user is 
+    var elDistanceToTop = document.querySelector('.path3').getBoundingClientRect().top;
+    var elDistanceFromTop = window.innerHeight - elDistanceToTop - 1.5*document.querySelector('.path3').getBoundingClientRect().height;
+    var scrollPercentage = elDistanceFromTop / window.innerHeight;
+    var $percentageComplete = scrollPercentage * 100;
+    //convert dashoffset pixel value to interger
+    var $newUnit = parseInt($dashOffset, 10);
+    //get the value to be subtracted from the 'stroke-dashoffset'
+    var $offsetUnit = $percentageComplete * ($newUnit / 100);
+    //set the new value of the dashoffset to create the drawing effect
+    $(".path3").css("stroke-dashoffset", $newUnit - $offsetUnit);
+  });
+});

@@ -29,11 +29,16 @@ function Parallax() {
 		'margin-top': (scrollPos/4)+"px",
 		'opacity': 1-(scrollPos/250)
 	});
+  if(document.getElementById('bannertext').style.opacity < 0) {
+    document.getElementById('bannertext').style.display = "none";
+  } else {
+    document.getElementById('bannertext').style.display = "block";
+  }
 }
 
 var dataObjects = [
   {
-    labels: ['12-13', '13-14', '14-15', '15-16', '16-17', '17-18', '18-19'],
+    labels: ['12-13', '13-14', '14-15', '15-16', '16-17', '17-18', '18-19', '19-20', '20-21'],
     datasets: [{
       label: 'Employees',
       data: [4, 7, 12, 25, 35, 50, 60, 70, 120],
@@ -44,7 +49,7 @@ var dataObjects = [
     labels: ['12-13', '13-14', '14-15', '15-16', '16-17', '17-18', '18-19'],
     datasets: [{
       label: 'Revenue',
-    data: [5, 7, 13, 27, 35, 50, 60, 70, 90],
+    data: [5, 7, 13, 27, 35, 50, 60, 70],
       backgroundColor: ["#55b5cd", "#370665", "#35589A", "#F14A16", "#FC9918", "#3FA796", "#9B0000", "#F9C5D5", "#04293A"],
     }]
   }
@@ -120,6 +125,9 @@ function updateChartType() {
           weight: 'bold',
           size: 15
         },
+      },
+      legend: {
+        display: false
       }
     }
   }
@@ -214,6 +222,20 @@ Chart.register({
 }
 });
 
+var chartTextList = [
+  'Peformance evaluation increased by 94%',
+  'Careers plans and progress increased by 86%',
+  'Compensation evaluation increased by 89%'
+]
+
+var countChart = 0;
+
+setInterval(function(){ 
+  workforceChart.options.elements.center.text = chartTextList[countChart%3];
+  workforceChart.update();
+  countChart++;
+}, 2000);
+
 var ctx1 = document.getElementById('workforce-chart').getContext('2d');
 var workforceChart = new Chart(ctx1, {
   type: 'doughnut',
@@ -274,19 +296,24 @@ var workforceChart = new Chart(ctx1, {
           return Math.round(value) + '%';
         }
       },
+      legend: {
+        display: false
+      }
     },
     elements: {
       center: {
-        text: 'Red is 2/3 of the total numbers',
-        color: '#FF6384', // Default is #000000
-        fontStyle: 'Arial', // Default is Arial
-        /* sidePadding: 20, // Default is 20 (as a percentage)
-        minFontSize: 25, // Default is 20 (in px), set to false and text will not wrap.
-        lineHeight: 25 // Default is 25 (in px), used for when text wraps */
+        text: '',
+        color: '#008080', // Default is #000000
+        wrapText: true,
+        sidePadding: 10, // Default is 20 (as a percentage)
+        maxFontSize: 20, // Default is 20 (in px), set to false and text will not wrap.
+        minFontSize: 15,
+        lineHeight: 25 // Default is 25 (in px), used for when text wraps
       }
     }
   }
 });
+
 
 const sections = document.querySelectorAll("section");
 const navLi = document.querySelectorAll(".navbar ul li a");
@@ -475,7 +502,6 @@ var dataMap = new Datamap(mapData);
 
 $(window).on('resize', function() {
   document.getElementById('map').innerHTML = "";
-  console.log(document.getElementById('map').innerHTML);
   var dataMap = new Datamap(mapData);
 })
 
@@ -580,42 +606,6 @@ $(function() {
     $(".path3").css("stroke-dashoffset", $newUnit - $offsetUnit);
   });
 });
-/* 
-$('#1').waypoint(function() {
-  increment(1, 87);
-}, {offset: '75%'});
-
-$('#2').waypoint(function() {
-  increment(2, 43);
-}, {offset: '75%'});
-
-$('#3').waypoint(function() {
-  increment(3, 79);
-}, {offset: '75%'});
-
-$('#4').waypoint(function() {
-  increment(4, 68);
-}, {offset: '75%'});
-
-$('#5').waypoint(function() {
-  increment(5, 46);
-}, {offset: '75%'});
-
-$('#6').waypoint(function() {
-  increment(6, 14);
-}, {offset: '75%'});
-
-function increment(elem, finalVal) {
-  var currVal = parseInt(document.getElementById(elem).innerHTML, 10);
-  if (currVal < finalVal) {
-    currVal++;
-    document.getElementById(elem).innerHTML = currVal + "%";
-
-    setTimeout(function() {
-      increment(elem, finalVal);
-    }, 40)
-  }
-}; */
 
 $(function(){
 	var inputs = $('.input');
@@ -629,27 +619,90 @@ $(function(){
 	});
 });
 
-var waypoint = new Waypoint({
-  element: document.getElementById('num-svg'),
-  handler: function(direction) {
-    console.log(this.element.getAttribute('data-count'));
-    countNum = this.element.text;
-    countTo = this.element.getAttribute('data-count');
-    this.element.animate({
-      text: countTo
-    },
-    {
-      duration: 2000,
-      easing: 'swing',
-      step: function() {
-        this.element.text(Math.floor(this.countNum));
-      },
-      complete: function() {
-        this.element.text(this.countNum);
-        //alert('finished');
-      }
 
+const initAnimatedCounts = () => {
+  const ease = (n) => {
+    // https://github.com/component/ease/blob/master/index.js
+    return --n * n * n + 1;
+  };
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        // Once this element is in view and starts animating, remove the observer,
+        // because it should only animate once per page load.
+        observer.unobserve(entry.target);
+        const countToString = entry.target.getAttribute('data-countTo');
+        const countTo = parseFloat(countToString);
+        const duration = parseFloat(entry.target.getAttribute('data-animateDuration'));
+        const countToParts = countToString.split('.');
+        const precision = countToParts.length === 2 ? countToParts[1].length : 0;
+        const startTime = performance.now();
+        const step = (currentTime) => {
+          const progress = Math.min(ease((currentTime  - startTime) / duration), 1);
+          entry.target.textContent = (progress * countTo).toFixed(precision);
+          if (progress < 1) {
+            animationFrame = window.requestAnimationFrame(step);
+          } else {
+            window.cancelAnimationFrame(animationFrame);
+          }
+        };
+        let animationFrame = window.requestAnimationFrame(step);
+      }
+    });
+  });
+  document.querySelectorAll('[data-animateDuration]').forEach((target) => {
+    target.setAttribute('data-countTo', target.textContent);
+    target.textContent = '0';
+    observer.observe(target);
+  });
+};
+initAnimatedCounts();
+
+var imggridnum = 0;
+
+var imgGridList = [
+  "url('/dist/images/Team/IMG_8883.jpg')",
+  "url('/dist/images/Team/DSC_1103.JPG')",
+  "url('/dist/images/Team/DSC_1158.JPG')",
+  "url('/dist/images/Team/IMG_8834.jpg')",
+  "url('/dist/images/Team/IMG_8847.jpg')",
+  "url('/dist/images/Team/IMG_8867.jpg')",
+  "url('/dist/images/Team/IMG_8877.jpg')",
+  "url('/dist/images/Team/IMG_8883.jpg')",
+  "url('/dist/images/Team/IMG_8924.jpg')",
+]
+
+setInterval(function() {
+    var childList = document.querySelectorAll('.img-grid-child');
+      childList.forEach(function(child) {
+        child.classList.add("visible");
+      });
+    document.getElementById("img-grid").style.backgroundImage=imgGridList[imggridnum%imgGridList.length];
+    imggridnum++;
+}, 1500);
+
+var footerTextList = [
+  "<q>Diversity <br>The beauty of humanity</q>",
+  "<q>Equality <br>When there is hope there is power</q>",
+  "<q>Inclusion <br>In Unity there is strength</q>"
+]
+
+var footerTextNum = 0;
+setInterval(function() {
+  document.getElementById("footer-text").innerHTML = footerTextList[footerTextNum%footerTextList.length];
+  footerTextNum++;
+}, 2000)
+
+/* window.addEventListener("scroll", function() {
+  var elem = document.getElementById('img-grid');
+  var vwTop = window.pageYOffset;
+  var vwBottom = (window.pageYOffset + window.innerHeight);
+  var elemTop = elem.offsetTop;
+  var elemHeight = elem.offsetHeight;
+  if (vwBottom > elemTop && ((vwTop - elemHeight) < elemTop)) {
+    var childList = document.querySelectorAll('.img-grid-child');
+    childList.forEach(function(child) {
+      child.classList.add("visible");
     })
-  },
-  offset: '75%'
-})
+  }
+}, false); */

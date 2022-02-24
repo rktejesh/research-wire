@@ -28,12 +28,20 @@ body {
   position: absolute;
   background-color: #f9f7f7;
   overflow-x: hidden;
+  font-family: 'Cambria' !important;
+  li {
+    word-spacing: 3px !important;
+  }
+  /* h2 {
+    font-family: 'Merriweather';
+    font-family: 'Bodoni Moda';
+  } */
 }
 
-html {
-  font-size: 1rem;
+ html {
+  font-size: 1.3rem;
 }
-
+/*
 @include media-breakpoint-up(sm) {
   html {
     font-size: 1.0rem;
@@ -50,7 +58,7 @@ html {
   html {
     font-size: 1.3rem;
   }
-}
+} */
 
 //---------------------------------------------
 // 3.Components
@@ -64,3 +72,4 @@ html {
 @import "components/reach";
 @import "components/statistics";
 @import "components/success-map";
+@import "components/about-us";

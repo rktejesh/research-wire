@@ -40,3 +40,97 @@
 .statistics-content {
     position: absolute;
 }
+
+.img-grid {
+  background-image: url('/dist/images/square.webp');
+  background-size: cover;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+	grid-template-rows: 1fr 1fr 1fr;
+  height: 45vh !important;
+  width: 45vh !important;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.img-grid-child {
+  background-color: #f9f7f7;
+  border-width: 2px;
+  height: 15vh;
+  width: 15vh;
+  /* &:nth-child(2) {
+    background-position: top center;
+  }
+  &:nth-child(3) {
+    background-position: top right;
+  }
+  &:nth-child(4) {
+    background-position: center left;
+  }
+  &:nth-child(5) {
+    background-position: center center;
+  }
+  &:nth-child(6) {
+    background-position: center right;
+  }
+  &:nth-child(7) {
+    background-position: bottom left;
+  }
+  &:nth-child(8) {
+    background-position: bottom center;
+  }
+  &:nth-child(9) {
+    background-position: bottom right;
+  } */
+}
+
+.img-grid-child.visible {
+  animation: colorChange 2s ease both;
+  &:nth-child(2) {
+    animation-delay: 0.5s;
+    -webkit-animation-delay: 0.5s;
+  }
+  &:nth-child(3) {
+    animation-delay: 0.9s;
+    -webkit-animation-delay: 0.9s;
+  }
+  &:nth-child(4) {
+    animation-delay: 0.3s;
+    -webkit-animation-delay: 0.3s;
+  }
+  &:nth-child(5) {
+    animation-delay: 0.4s;
+    -webkit-animation-delay: 0.4s;
+  }
+  &:nth-child(6) {
+    animation-delay: 0.7s;
+    -webkit-animation-delay: 0.7s;
+  }
+  &:nth-child(7) {
+    animation-delay: 0.2s;
+    -webkit-animation-delay: 0.2s;
+  }
+  &:nth-child(8) {
+    animation-delay: 0.6s;
+    -webkit-animation-delay: 0.6s;
+  }
+  &:nth-child(9) {
+    animation-delay: 0.4s;
+    -webkit-animation-delay: 0.4s;
+  }
+}
+
+@keyframes colorChange {
+  0% {
+    background-color: #f9f7f7;
+    border-color: transparent;
+  }
+  100% {
+    background-color: transparent;
+    border-color: #f9f7f7;
+  }
+}
+
+.data-object {
+  margin: 0%;
+}

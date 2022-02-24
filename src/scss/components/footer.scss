@@ -1,32 +1,26 @@
 .footer-details {
-    background-color: #222222;
-    color: #fff;
+  background-color: #222222;
+  color: #fff;
 }
 
 .icon.circular {
-    border-radius: 500em!important;
-    box-shadow: 0 0 0 .1em rgba(0,0,0,.1) inset;
-    height: 2em!important;
-    width: 2em!important;
-    background-color: blue;
+  border-radius: 500em !important;
+  box-shadow: 0 0 0 0.1em rgba(0, 0, 0, 0.1) inset;
+  height: 2em !important;
+  width: 2em !important;
+  background-color: blue;
 }
 
 #footer-text {
-    text-align: center;
+  text-align: center;
 }
-
+/* 
 #footer-text {
-	font-weight: 100;
-	max-width: 600px;
-	line-height: 1.4;
 	position: relative;
-	margin: 0;
-	padding: .5rem;
 }
 
 #footer-text:before,
 #footer-text:after {
-	position: absolute;
 	color: #000;
 	font-size: 2rem;
 	width: 2rem;
@@ -40,3 +34,71 @@
 #footer-text:after {
 	content: '”';
 }
+ */
+
+.quote {
+  text-align: center;
+  margin: auto;
+  padding: 15px;
+  border: 2px solid black;
+  max-width: 70%;
+  position: relative;
+  margin-top: 100px;
+}
+blockquote {
+  color: rgb(0, 0, 0);
+  text-shadow: -1px 1px #555;
+  font-style: italic;
+  position: relative;
+  font-size: x-large;
+  z-index: 20;
+}
+.left {
+  position: absolute;
+  top: -40px;
+  left: -10px;
+  width: 150px;
+  text-align: left;
+  z-index: 10;
+  color: #336699;
+  font-size: 4em;
+}
+.right {
+  position: absolute;
+  bottom: -60px;
+  right: -10px;
+  width: 150px;
+  text-align: right;
+  z-index: 10;
+  font-size: 4rem;
+  color: #336699;
+}
+small {
+  font-size: 1.7rem;
+  color: #336699;
+  position: relative;
+  z-index: 20;
+
+  &:before {
+    content: "\2014 \0020";
+    width: 5px;
+  }
+}
+
+.quote-green {
+    color: green;
+  font-size: x-large;
+  animation: textchange 2s ease-in-out infinite both;
+}
+
+@keyframes textchange {
+    0% {
+      color: green;
+    }
+    50% {
+      color: transparent;
+    }
+    100% {
+        color: green;
+    }
+  }

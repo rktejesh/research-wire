@@ -47,8 +47,8 @@
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
 	grid-template-rows: 1fr 1fr 1fr;
-  height: 45vh !important;
-  width: 45vh !important;
+  height: 75vh !important;
+  width: 75vh !important;
   background-repeat: no-repeat;
   background-position: center;
 }
@@ -56,8 +56,8 @@
 .img-grid-child {
   background-color: #f9f7f7;
   border-width: 2px;
-  height: 15vh;
-  width: 15vh;
+  height: 25vh;
+  width: 25vh;
   /* &:nth-child(2) {
     background-position: top center;
   }
@@ -133,4 +133,5 @@
 
 .data-object {
   margin: 0%;
+  color: #112D4E;
 }

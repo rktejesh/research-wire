@@ -595,9 +595,9 @@ $(function() {
   $(window).on('scroll', function() {
     //calculate how far down the page the user is 
     var elDistanceToTop = document.querySelector('.path3').getBoundingClientRect().top;
-    var elDistanceFromTop = window.innerHeight - elDistanceToTop - 1.5*document.querySelector('.path3').getBoundingClientRect().height;
+    var elDistanceFromTop = window.innerHeight - elDistanceToTop - document.querySelector('.path3').getBoundingClientRect().height;
     var scrollPercentage = elDistanceFromTop / window.innerHeight;
-    var $percentageComplete = scrollPercentage * 50;
+    var $percentageComplete = scrollPercentage * 100;
     //convert dashoffset pixel value to interger
     var $newUnit = parseInt($dashOffset, 10);
     //get the value to be subtracted from the 'stroke-dashoffset'
@@ -679,12 +679,12 @@ setInterval(function() {
       });
     document.getElementById("img-grid").style.backgroundImage=imgGridList[imggridnum%imgGridList.length];
     imggridnum++;
-}, 1500);
+},2000);
 
 var footerTextList = [
-  "<q>Diversity <br>The beauty of humanity</q>",
-  "<q>Equality <br>When there is hope there is power</q>",
-  "<q>Inclusion <br>In Unity there is strength</q>"
+  "Diversity <br><q>The beauty of humanity</q>",
+  "Equality <br><q>When there is hope there is power</q>",
+  "Inclusion <br><q>In Unity there is strength</q>"
 ]
 
 var footerTextNum = 0;

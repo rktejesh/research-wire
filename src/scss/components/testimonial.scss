@@ -1,0 +1,217 @@
+#testimonial {
+    background-image: url(/dist/images/rm378-04-x.jpg);
+    background-size: cover;
+	color: #DFF6FF;
+}
+
+#testimonialDIV_1 {
+    box-sizing: border-box;
+    display: flex;
+    font: 16px "Times New Roman";
+    transition: left 0.4s ease 0s;
+}/*#testimonialDIV_1*/
+
+#testimonialDIV_1:after {
+    box-sizing: border-box;
+    display: block;
+    font: 16px "Times New Roman";
+}/*#testimonialDIV_1:after*/
+
+#testimonialDIV_1:before {
+    box-sizing: border-box;
+    display: block;
+    font: 16px "Times New Roman";
+}/*#testimonialDIV_1:before*/
+
+#testimonialDIV_2 {
+    align-items: center;
+    box-sizing: border-box;
+    display: flex;
+    justify-content: center;
+    min-block-size: auto;
+    min-height: auto;
+    min-inline-size: auto;
+    min-width: auto;
+    text-align: center;
+    font: 16px "Times New Roman";
+	flex-direction: column;
+}/*#testimonialDIV_2*/
+
+#testimonialDIV_2:after {
+    box-sizing: border-box;
+    display: block;
+    text-align: center;
+    font: 16px "Times New Roman";
+}
+
+#testimonialDIV_2:before {
+    box-sizing: border-box;
+    display: block;
+    text-align: center;
+    font: 16px "Times New Roman";
+}
+
+#testimonialQUOTE_3 {
+    block-size: 115px;
+    border-block-end-color: rgb(236, 32, 39);
+    border-block-start-color: rgb(236, 32, 39);
+    border-inline-end-color: rgb(236, 32, 39);
+    border-inline-start-color: rgb(236, 32, 39);
+    box-sizing: border-box;
+    caret-color: rgb(236, 32, 39);
+    color: rgb(236, 32, 39);
+    column-rule-color: rgb(236, 32, 39);
+    display: block;
+    min-block-size: auto;
+    min-height: auto;
+    min-inline-size: auto;
+    min-width: auto;
+    text-align: center;
+    text-decoration: none solid rgb(236, 32, 39);
+    border: 0px none rgb(236, 32, 39);
+    font: 700 100px Arial;
+    outline: rgb(236, 32, 39) none 0px;
+}
+
+#testimonialQUOTE_3:after {
+    border-block-end-color: rgb(236, 32, 39);
+    border-block-start-color: rgb(236, 32, 39);
+    border-inline-end-color: rgb(236, 32, 39);
+    border-inline-start-color: rgb(236, 32, 39);
+    box-sizing: border-box;
+    caret-color: rgb(236, 32, 39);
+    color: rgb(236, 32, 39);
+    column-rule-color: rgb(236, 32, 39);
+    text-align: center;
+    text-decoration: none solid rgb(236, 32, 39);
+    border: 0px none rgb(236, 32, 39);
+    font: 700 100px Arial;
+    outline: rgb(236, 32, 39) none 0px;
+}
+
+#testimonialQUOTE_3:before {
+    border-block-end-color: rgb(236, 32, 39);
+    border-block-start-color: rgb(236, 32, 39);
+    border-inline-end-color: rgb(236, 32, 39);
+    border-inline-start-color: rgb(236, 32, 39);
+    box-sizing: border-box;
+    caret-color: rgb(236, 32, 39);
+    color: rgb(236, 32, 39);
+    column-rule-color: rgb(236, 32, 39);
+    text-align: center;
+    text-decoration: none solid rgb(236, 32, 39);
+    border: 0px none rgb(236, 32, 39);
+    font: 700 100px Arial;
+    outline: rgb(236, 32, 39) none 0px;
+}
+
+#testimonialP_4 {
+    border-block-end-color: rgb(17, 17, 17);
+    border-block-start-color: rgb(17, 17, 17);
+    border-inline-end-color: rgb(17, 17, 17);
+    border-inline-start-color: rgb(17, 17, 17);
+    box-sizing: border-box;
+    caret-color: rgb(17, 17, 17);
+    column-rule-color: rgb(17, 17, 17);
+    min-block-size: auto;
+    min-height: auto;
+    min-inline-size: auto;
+    min-width: auto;
+    perspective-origin: 375px 37.3906px;
+    text-align: center;
+    text-decoration: none solid rgb(17, 17, 17);
+    transform-origin: 375px 37.3906px;
+    max-width: 750px;
+    border: 0px none rgb(17, 17, 17);
+    font: 700 22px / 37.4px Roboto;
+    margin: -20px 0px 20px;
+    outline: rgb(17, 17, 17) none 0px;
+}
+
+#testimonialP_4:after {
+    border-block-end-color: rgb(17, 17, 17);
+    border-block-start-color: rgb(17, 17, 17);
+    border-inline-end-color: rgb(17, 17, 17);
+    border-inline-start-color: rgb(17, 17, 17);
+    box-sizing: border-box;
+    caret-color: rgb(17, 17, 17);
+    column-rule-color: rgb(17, 17, 17);
+    text-align: center;
+    text-decoration: none solid rgb(17, 17, 17);
+    border: 0px none rgb(17, 17, 17);
+    font: 700 22px / 37.4px Roboto;
+    outline: rgb(17, 17, 17) none 0px;
+}
+
+#testimonialP_4:before {
+    border-block-end-color: rgb(17, 17, 17);
+    border-block-start-color: rgb(17, 17, 17);
+    border-inline-end-color: rgb(17, 17, 17);
+    border-inline-start-color: rgb(17, 17, 17);
+    box-sizing: border-box;
+    caret-color: rgb(17, 17, 17);
+    column-rule-color: rgb(17, 17, 17);
+    text-align: center;
+    text-decoration: none solid rgb(17, 17, 17);
+    border: 0px none rgb(17, 17, 17);
+    font: 700 22px / 37.4px Roboto;
+    outline: rgb(17, 17, 17) none 0px;
+}
+
+#testimonialH2_5 {
+    color: #fff;
+    border-block-end-color: rgb(17, 17, 17);
+    border-block-start-color: rgb(17, 17, 17);
+    border-inline-end-color: rgb(17, 17, 17);
+    border-inline-start-color: rgb(17, 17, 17);
+    box-sizing: border-box;
+    caret-color: #111111;
+    column-rule-color: rgb(17, 17, 17);
+    inline-size: 126.266px;
+    margin-block-end: 11.62px;
+    margin-block-start: 11.62px;
+    min-block-size: auto;
+    min-height: auto;
+    min-inline-size: auto;
+    min-width: auto;
+    opacity: 0.8;
+    perspective-origin: 63.125px 8.5px;
+    text-align: center;
+    text-decoration: none solid rgb(17, 17, 17);
+    transform-origin: 63.1328px 8.5px;
+    width: 126.266px;
+    border: 0px none rgb(17, 17, 17);
+    font: 700 14px Roboto;
+    margin: 11.62px 0px;
+    outline: rgb(17, 17, 17) none 0px;
+}
+
+#testimonialH2_5:after {
+    border-block-end-color: rgb(17, 17, 17);
+    border-block-start-color: rgb(17, 17, 17);
+    border-inline-end-color: rgb(17, 17, 17);
+    border-inline-start-color: rgb(17, 17, 17);
+    box-sizing: border-box;
+    caret-color: rgb(17, 17, 17);
+    column-rule-color: rgb(17, 17, 17);
+    text-align: center;
+    text-decoration: none solid rgb(17, 17, 17);
+    border: 0px none rgb(17, 17, 17);
+    font: 700 14px Roboto;
+    outline: rgb(17, 17, 17) none 0px;
+}
+
+#testimonialH2_5:before {
+    border-block-end-color: rgb(17, 17, 17);
+    border-block-start-color: rgb(17, 17, 17);
+    border-inline-end-color: rgb(17, 17, 17);
+    border-inline-start-color: rgb(17, 17, 17);
+    box-sizing: border-box;
+    caret-color: rgb(17, 17, 17);
+    column-rule-color: rgb(17, 17, 17);
+    text-align: center;
+    text-decoration: none solid rgb(17, 17, 17);
+    border: 0px none rgb(17, 17, 17);
+    font: 700 14px Roboto;
+    outline: rgb(17, 17, 17) none 0px;
+}

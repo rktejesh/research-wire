@@ -5,4 +5,15 @@
 #customer-insights {
 	background-image: url(/dist/images/rm378-04-x.jpg);
 	color: #DFF6FF;
+    background-size: cover;
+}
+
+#customer-insights {
+    ul {
+        font-size: initial;
+        text-align: center;
+    }
+    h3 {
+        font-size: inherit;
+    }
 }

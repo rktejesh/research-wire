@@ -36,6 +36,11 @@ function Parallax() {
   }
 }
 
+const formatter = new Intl.NumberFormat("en-IN", {
+  style: "currency",
+  currency: "INR"
+});
+
 var dataObjects = [
   {
     labels: ['12-13', '13-14', '14-15', '15-16', '16-17', '17-18', '18-19', '19-20', '20-21'],
@@ -46,10 +51,10 @@ var dataObjects = [
     }]
   },
   {
-    labels: ['12-13', '13-14', '14-15', '15-16', '16-17', '17-18', '18-19'],
+    labels: ['2011', '2012', '2013', '2014', '2015', '2016', '2017', '2018', '2019', '2020', '2021', '2022'],
     datasets: [{
       label: 'Revenue',
-    data: [5, 7, 13, 27, 35, 50, 60, 70],
+    data: [20000, 80000, 120000, 200000, 300000, 400000, 500000, 600000, 700000, 800000, 1200000, 2200000],
       backgroundColor: ["#55b5cd", "#370665", "#35589A", "#F14A16", "#FC9918", "#3FA796", "#9B0000", "#F9C5D5", "#04293A"],
     }]
   }
@@ -77,6 +82,11 @@ var myChart = new Chart(ctx, {
         return delay;
       },
     },
+    scales: {
+      y: {
+        
+      }
+    }
   }
 });
 
@@ -114,6 +124,11 @@ function updateChartType() {
         grid: {
           drawOnChartArea: false,
         },
+        ticks: {
+          callback: (label, index, labels) => {
+            return formatter.format(label);
+          }
+        }
       }
     },
     plugins: {
@@ -171,7 +186,7 @@ Chart.register({
         var wrapText = false;
 
         if (minFontSize === undefined) {
-            minFontSize = 10;
+            minFontSize = 5;
         }
 
         if (minFontSize && fontSizeToUse < minFontSize) {
@@ -308,7 +323,7 @@ var workforceChart = new Chart(ctx1, {
         sidePadding: 10, // Default is 20 (as a percentage)
         maxFontSize: 20, // Default is 20 (in px), set to false and text will not wrap.
         minFontSize: 15,
-        lineHeight: 25 // Default is 25 (in px), used for when text wraps
+        lineHeight: 25 
       }
     }
   }

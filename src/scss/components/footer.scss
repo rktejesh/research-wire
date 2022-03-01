@@ -41,15 +41,13 @@
   margin: auto;
   padding: 15px;
   border: 2px solid black;
-  max-width: 70%;
+  width: 70%;
   position: relative;
-  margin-top: 100px;
 }
 blockquote {
   color: rgb(0, 0, 0);
   text-shadow: -1px 1px #555;
   font-style: italic;
-  position: relative;
   font-size: x-large;
   z-index: 20;
 }

@@ -1,5 +1,3 @@
-// Load Bootstrap JS
-import bootstrap from 'bootstrap'
 import $, { data } from 'jquery'
 import Chart from 'chart.js/auto';
 import ChartDataLabels from 'chartjs-plugin-datalabels';
@@ -38,7 +36,7 @@ function Parallax() {
 
 const formatter = new Intl.NumberFormat("en-IN", {
   style: "currency",
-  currency: "INR"
+  currency: "USD"
 });
 
 var dataObjects = [
@@ -54,99 +52,129 @@ var dataObjects = [
     labels: ['2011', '2012', '2013', '2014', '2015', '2016', '2017', '2018', '2019', '2020', '2021', '2022'],
     datasets: [{
       label: 'Revenue',
-    data: [20000, 80000, 120000, 200000, 300000, 400000, 500000, 600000, 700000, 800000, 1200000, 2200000],
+    data: [0.02, 0.08, 0.12, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 1.2, 2.2],
       backgroundColor: ["#55b5cd", "#370665", "#35589A", "#F14A16", "#FC9918", "#3FA796", "#9B0000", "#F9C5D5", "#04293A"],
     }]
   }
 ]
 
 var ctx = document.getElementById('myChart').getContext('2d');
+var ctx2 = document.getElementById('myChart1').getContext('2d');
 let delayed;
-var myChart = new Chart(ctx, {
-  type: 'bar',
-  data: dataObjects[0],
-  options: {
-    elements: {
-      center: false
-    },
-    responsive: true,
-    animation: {
-      onComplete: () => {
-        delayed = true;
-      },
-      delay: (context) => {
-        let delay = 0;
-        if (context.type === 'data' && context.mode === 'default' && !delayed) {
-          delay = 1000;
-        }
-        return delay;
-      },
-    },
-    scales: {
-      y: {
-        
-      }
-    }
-  }
-});
-
+var myChart;
+var myChart1;
+  
 function updateChartType() {
   // Destroy the previous chart
-  myChart.destroy();
   // Draw a new chart on the basic of dropdown
-  myChart = new Chart(ctx, {
-  type: 'bar',  // Select chart type from dropdown
-  data: dataObjects[document.getElementById("chartType").value],
-  options: {
-    elements: {
-      center: false
-    },
-    responsive: true,
-    animation: {
-      onComplete: () => {
-        delayed = true;
+  if(document.getElementById("chartType").value == 0) {
+    document.getElementById('myChart').style.display = "block";
+    document.getElementById('myChart1').style.display = "none";
+    myChart = new Chart(ctx, {
+    type: 'bar',  // Select chart type from dropdown
+    data: dataObjects[document.getElementById("chartType").value],
+    options: {
+      elements: {
+        center: false
       },
-      delay: (context) => {
-        let delay = 0;
-        if (context.type === 'data' && context.mode === 'default' && !delayed) {
-          delay = 1000;
+      responsive: true,
+      animation: {
+        onComplete: () => {
+          delayed = true;
+        },
+        delay: (context) => {
+          let delay = 0;
+          if (context.type === 'data' && context.mode === 'default' && !delayed) {
+            delay = 1000;
+          }
+          return delay;
+        },
+      },
+      scales: {
+        x: {
+          grid: {
+            drawOnChartArea: false,
+          },
+        },
+        y: {
+          suggestedMax: 140,
+          ticks: {
+            callback: function(value, index, ticks) {
+              return value;
+          }
+        },
+          grid: {
+            drawOnChartArea: false,
+          },
         }
-        return delay;
       },
-    },
-    scales: {
-      x: {
-        grid: {
-          drawOnChartArea: false,
+      plugins: {
+        datalabels: {
+          anchor: 'end',
+          align: 'top',
+          color: '#000',
+          font: {
+            weight: 'bold',
+            size: 15
+          },
         },
-      },
-      y: {
-        grid: {
-          drawOnChartArea: false,
+        legend: {
+          display: false
+        }
+      }
+    }
+    });
+  } else {
+    document.getElementById('myChart').style.display = "none";
+    document.getElementById('myChart1').style.display = "block";
+    myChart1 = new Chart(ctx2, {
+      type: 'bar',  // Select chart type from dropdown
+      data: dataObjects[document.getElementById("chartType").value],
+      options: {
+        elements: {
+          center: false
         },
-        ticks: {
-          callback: (label, index, labels) => {
-            return formatter.format(label);
+        responsive: true,
+        animation: {
+          onComplete: () => {
+            delayed = true;
+          },
+          delay: (context) => {
+            let delay = 0;
+            if (context.type === 'data' && context.mode === 'default' && !delayed) {
+              delay = 1000;
+            }
+            return delay;
+          },
+        },
+        scales: {
+          x: {
+            grid: {
+              drawOnChartArea: false,
+            },
+          },
+          y: {
+            grid: {
+              drawOnChartArea: false,
+            },
+            ticks: {
+                callback: function(value, index, ticks) {
+                  return '$' + value + 'M';
+              }
+            }
+          }
+        },
+        plugins: {
+          datalabels: {
+            display: false
+          },
+          legend: {
+            display: false
           }
         }
       }
-    },
-    plugins: {
-      datalabels: {
-        anchor: 'end',
-        align: 'top',
-        color: '#000',
-        font: {
-          weight: 'bold',
-          size: 15
-        },
-      },
-      legend: {
-        display: false
-      }
-    }
+      });
   }
-  });
 };
 
 document.getElementById('chartType').onchange = function () {
@@ -311,9 +339,9 @@ var workforceChart = new Chart(ctx1, {
           return Math.round(value) + '%';
         }
       },
-      legend: {
+      /* legend: {
         display: false
-      }
+      } */
     },
     elements: {
       center: {
@@ -510,6 +538,7 @@ var mapData = {
       TWN: { fillKey: 'gt' },
       PRK: { fillKey: 'gt' },
       KOR: { fillKey: 'gt' },
+      IND: { fillKey: 'gt' },
   },
   }
 
@@ -637,7 +666,6 @@ $(function(){
 
 const initAnimatedCounts = () => {
   const ease = (n) => {
-    // https://github.com/component/ease/blob/master/index.js
     return --n * n * n + 1;
   };
   const observer = new IntersectionObserver((entries) => {
@@ -675,7 +703,7 @@ initAnimatedCounts();
 
 var imggridnum = 0;
 
-var imgGridList = [
+/* var imgGridList = [
   "url('/dist/images/Team/IMG_8883.jpg')",
   "url('/dist/images/Team/DSC_1103.JPG')",
   "url('/dist/images/Team/DSC_1158.JPG')",
@@ -685,16 +713,16 @@ var imgGridList = [
   "url('/dist/images/Team/IMG_8877.jpg')",
   "url('/dist/images/Team/IMG_8883.jpg')",
   "url('/dist/images/Team/IMG_8924.jpg')",
-]
+] */
 
-setInterval(function() {
+/* setInterval(function() {
     var childList = document.querySelectorAll('.img-grid-child');
       childList.forEach(function(child) {
         child.classList.add("visible");
       });
     document.getElementById("img-grid").style.backgroundImage=imgGridList[imggridnum%imgGridList.length];
     imggridnum++;
-},2000);
+},2000); */
 
 var footerTextList = [
   "Diversity <br><q>The beauty of humanity</q>",

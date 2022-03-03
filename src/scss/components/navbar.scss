@@ -8,6 +8,9 @@
   padding: 30px;
   pointer-events: none;
   z-index: 10000;
+  @media screen and (max-width: $mq-md) {
+    display: none !important;
+  }
 }
 
 .navbar {

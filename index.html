@@ -152,7 +152,7 @@
     </section>
     <section id="statistics">
         <div class="container-fluid d-flex flex-row justify-content-end">
-            <div class="col-lg-6 d-flex justify-content-center align-items-center">
+            <div class="col-lg-6 d-flex flex-wrap justify-content-center align-items-center">
                 <!-- <div class="img-grid w-75 h-75 m-3" id="img-grid">
                     <div class="img-grid-child">
 
@@ -182,7 +182,7 @@
 
                     </div>
                 </div> -->
-                <div class="slide m-5">
+                <div class="slide m-md-5">
                     <div style="background-image:url('/dist/images/Team/IMG_8883.jpg')"></div>
                     <div style="background-image:url('/dist/images/Team/DSC_1103.JPG')"></div>
                     <div style="background-image:url('/dist/images/Team/DSC_1158.JPG')"></div>
@@ -313,7 +313,7 @@
         </div>
     </section>
     <section id="about-us">
-        <div class="container-fluid p-5">
+        <div class="container-fluid p-md-5">
             <div class="row d-flex flex-row justify-content-center">
                 <div class="col-lg-4 d-flex flex-row justify-content-between align-items-center">
                     <h2>Employee Engagement uplifts the Revenue</h2>
@@ -348,14 +348,14 @@
                             <option value="1">Revenue (Cr.)</option>
                         </select>
                     </div><br><br>
-                    <canvas id="myChart"></canvas>
-                    <canvas id="myChart1"></canvas>
+                    <canvas id="myChart" height="200"></canvas>
+                    <canvas id="myChart1" height="200"></canvas>
                 </div>
             </div>
         </div>
     </section>
     <section id="workforce">
-        <div class="container-fluid p-5">
+        <div class="container-fluid p-md-5">
             <div class="row d-flex flex-row justify-content-center">
                 <div class="col-lg-4 d-flex flex-column justify-content-between align-items-center">
 
@@ -365,14 +365,14 @@
                 </div>
             </div>
             <div class="row d-flex flex-row justify-content-center">
-                <div class="col-lg-4 d-flex flex-column justify-content-center align-items-start p-5">
+                <div class="col-lg-4 d-flex flex-column justify-content-center align-items-start p-md-5">
                     <canvas id="workforce-chart"></canvas>
                 </div>
                 <div class="col-lg-4 d-flex flex-column justify-content-center align-items-center">
                     <ul class="p-2" style="list-style-type: none;">
-                        <li>G₹OW BIG 
+                        <li>G₹OW BIG
                             with Researchwire
-                            ushering change and opportunity 
+                            ushering change and opportunity
                             technology and innovation shaping the future of IP </li>
                     </ul>
                 </div>
@@ -448,7 +448,8 @@
                     <div class="d-flex flex-column text-center align-items-center justify-content-center">
                         <h2>2015</h2>
                         <p class="p-3 m-0">
-                            Addition of R&D/Product development support. <!-- Technology scouting and cross domain
+                            Addition of R&D/Product development support.
+                            <!-- Technology scouting and cross domain
                             application of technologies added to service basket. -->
                         </p>
                     </div>
@@ -627,9 +628,9 @@
             style="height: inherit;">
             <div class="d-flex position-absolute w-100 justify-content-evenly align-items-center flex-wrap">
                 <div class="nav d-flex flex-row justify-content-between">
-                    <div class="d-flex flex-column">
-                        <h1>PRAVEEN SINGH</h1>
-                        <h3 class="span loader">
+                    <div class="d-flex flex-column align-items-center align-items-md-start">
+                        <h1 class="p-3">PRAVEEN SINGH</h1>
+                        <h3 class="span loader p-3">
                             <span class='m'>R</span>
                             <span class='m'>A</span>
                             <span class='m'>N</span>
@@ -665,15 +666,17 @@
                             <span class='m'>N</span>
                             <span class="m">T</span>
                         </h3>
-                        <button type="button" class="btn btn-secondary" style="width: fit-content;"><a
-                                href="https://www.iam-media.com/survey/strategy-300-global-leaders/2022/article/praveen-singh"
-                                target="_blank" rel="noopener noreferrer"
-                                style="text-decoration: none; color: #fff;">Know More</a></button>
+                        <div class="p-3">
+                            <button type="button" class="btn btn-secondary" style="width: fit-content;"><a
+                                    href="https://www.iam-media.com/survey/strategy-300-global-leaders/2022/article/praveen-singh"
+                                    target="_blank" rel="noopener noreferrer"
+                                    style="text-decoration: none; color: #fff;">Know More</a></button>
+                        </div>
                     </div>
                 </div>
-                <div class="col-lg-3 d-flex align-items-center justify-content-center">
-                    <img src="/dist/images/IAM global.jpg"
-                        alt="" srcset="" class="reward-img img-fluid" style="max-width: 60%;">
+                <div class="col-lg-3 d-flex align-items-center justify-content-center p-3">
+                    <img src="/dist/images/iam300.png" alt="" srcset="" class="reward-img img-fluid"
+                        style="max-width: 60%;">
                 </div>
             </div>
             <div id="particles-js"></div>
@@ -735,8 +738,8 @@
                                 src="/dist/images/location.png" height="48px" width="48px" alt="" srcset=""></a>
                     </div>
                     <div class="p-1">
-                        <a href="mailto:query@researchwire.in" target="_blank" rel="noopener noreferrer"><img src="/dist/images/email.png" height="48px"
-                                width="48px" alt="" srcset=""></a>
+                        <a href="mailto:query@researchwire.in" target="_blank" rel="noopener noreferrer"><img
+                                src="/dist/images/email.png" height="48px" width="48px" alt="" srcset=""></a>
                     </div>
                     <div class="p-1">
                         <a href="tel:022 – 4122 5210"><img src="/dist/images/phone.png" height="48px" width="48px"
@@ -744,13 +747,23 @@
                     </div>
                 </div>
             </div>
-            <div class="d-flex col-lg-3 align-items-center justify-content-center">
+            <!-- <div class="d-flex col-lg-3 align-items-center justify-content-center">
                 <div class="quote">
                     <span class="left">❝</span>
                     <blockquote>
                         <p id="footer-text"></p>
                     </blockquote>
                     <span class="right">❞</span>
+                </div>
+            </div> -->
+            <div id="testimonialDIV_1">
+                <div id="testimonialDIV_2">
+                    <quote id="testimonialQUOTE_3" style="height: 70px;">
+                        ”
+                    </quote>
+                    <h2 id="testimonialH2_5" style="color: #000000;">
+                        <p id="footer-text"></p>
+                    </h2>
                 </div>
             </div>
             <div class="p-5 col-lg-3 text-center d-flex flex-column align-items-center justify-content-center">

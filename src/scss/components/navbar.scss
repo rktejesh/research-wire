@@ -1,4 +1,4 @@
-.nav-div{
+.nav-div {
   display: flex;
   height: inherit;
   width: inherit;
@@ -14,12 +14,12 @@
 }
 
 .navbar {
-  pointer-events: all!important;
-  &:hover{
+  pointer-events: all !important;
+  &:hover {
     background-color: white;
     transition: background-color 0.5s linear;
     li {
-      p{
+      p {
         display: block;
       }
     }
@@ -37,44 +37,51 @@
         display: none;
         margin: 0%;
         padding-right: 5px;
-        font-size:small;
+        font-size: small;
       }
     }
   }
   a {
-    display: block;
-    border: 2px solid #112d4e;
-    background-color: #112d4e;
-    width: 20px;
-    height: 20px;
     text-decoration: none;
     color: black;
-    position: relative;
-    &::after {
-      content: "";
-      background-color: #fff;
-      position: absolute;
-      bottom: 0;
-      height: 0;
-      left: 0;
-      right: 0;
-      width: 100%;
-      transition: height 0.3s ease;
-    }
-    &::before{
-        content: "";
-    }
-    &:hover {
-      &::after {
-        height: 100%;
-      }
-    }
   }
   a.active {
+    color: #112d4e;
+  }
+}
+
+.navbar-icon {
+  display: block;
+  border: 2px solid #112d4e;
+  background-color: #112d4e;
+  width: 20px;
+  height: 20px;
+  text-decoration: none;
+  color: black;
+  position: relative;
+  &::after {
+    content: "";
+    background-color: #fff;
+    position: absolute;
+    bottom: 0;
+    height: 0;
+    left: 0;
+    right: 0;
+    width: 100%;
+    transition: height 0.3s ease;
+  }
+  &::before {
+    content: "";
+  }
+  &:hover {
     &::after {
       height: 100%;
     }
   }
-  
 }
 
+.navbar-icon.active {
+  &::after {
+    height: 100%;
+  }
+}

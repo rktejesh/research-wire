@@ -1,5 +1,5 @@
 #hero {
-  background-image: url(/dist/images/36140-429433.png);
+  background-image: url(dist/images/36140-429433.png);
   background-repeat: no-repeat;
   background-position: bottom;
   background-size: cover;
@@ -20,7 +20,7 @@
 }
 
 #banner img {
-  background: url(/dist/images/36140-429433.png) no-repeat center center fixed 100% 100%;
+  background: url(dist/images/36140-429433.png) no-repeat center center fixed 100% 100%;
   background-size: cover;
   height: inherit;
   width: inherit;
@@ -37,6 +37,9 @@
   @media screen and (max-width: $mq-lg) {
     width: 70%;
     margin-left: 0%;
+    h1 {
+      font-size: x-large;
+    }
   }
 }
 

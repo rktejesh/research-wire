@@ -703,18 +703,6 @@ initAnimatedCounts();
 
 var imggridnum = 0;
 
-/* var imgGridList = [
-  "url('/dist/images/Team/IMG_8883.jpg')",
-  "url('/dist/images/Team/DSC_1103.JPG')",
-  "url('/dist/images/Team/DSC_1158.JPG')",
-  "url('/dist/images/Team/IMG_8834.jpg')",
-  "url('/dist/images/Team/IMG_8847.jpg')",
-  "url('/dist/images/Team/IMG_8867.jpg')",
-  "url('/dist/images/Team/IMG_8877.jpg')",
-  "url('/dist/images/Team/IMG_8883.jpg')",
-  "url('/dist/images/Team/IMG_8924.jpg')",
-] */
-
 /* setInterval(function() {
     var childList = document.querySelectorAll('.img-grid-child');
       childList.forEach(function(child) {

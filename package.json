@@ -9,7 +9,7 @@
     "images": "node ./bin/images.js"
   },
   "devDependencies": {
-    "@babel/core": "^7.17.9",
+    "@babel/core": "^7.17.12",
     "@babel/preset-env": "^7.15.0",
     "@popperjs/core": "^2.11.5",
     "autoprefixer": "^10.3.3",
